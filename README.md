@@ -3,7 +3,7 @@
 </div>
 
 <div align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=2300&pause=450&center=true&vCenter=true&width=900&color=FFD700&lines=Ingenier%C3%ADa+de+Sistemas+(5to+semestre);Desarrollo+Web+%7C+Bases+de+Datos+%7C+Automatizaci%C3%B3n;Python+%7C+JavaScript+%7C+C%23+%7C+C%2B%2B+%7C+SQL;Remoto+%2F+H%C3%ADbrido+%7C+Pr%C3%A1cticas+%2F+Junior" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=2300&pause=450&center=true&vCenter=true&width=900&color=FFD700&lines=Ingenier%C3%ADa+de+Sistemas+(6to+semestre);Desarrollo+Web+%7C+Bases+de+Datos+%7C+Automatizaci%C3%B3n;Python+%7C+JavaScript+%7C+C%23+%7C+C%2B%2B+%7C+SQL;Remoto+%2F+H%C3%ADbrido+%7C+Pr%C3%A1cticas+%2F+Junior" />
 </div>
 
 <div align="center">
@@ -11,7 +11,7 @@
     <img src="https://img.shields.io/badge/Email-antoniovicentegarciacorrales2%40gmail.com-000000?style=for-the-badge&logo=gmail&logoColor=white&labelColor=8B0000" />
   </a>
   <img src="https://img.shields.io/badge/Ubicaci%C3%B3n-Bolivia-000000?style=for-the-badge&logo=google-maps&logoColor=white&labelColor=8B0000" />
-  <img src="https://img.shields.io/badge/Tel%C3%A9fono-76%2097%2044%2099-000000?style=for-the-badge&logo=whatsapp&logoColor=white&labelColor=8B0000" />
+  <img src="https://img.shields.io/badge/Tel%C3%A9fono-78%2035%2028%2079-000000?style=for-the-badge&logo=whatsapp&logoColor=white&labelColor=8B0000" />
 </div>
 
 <br/>
