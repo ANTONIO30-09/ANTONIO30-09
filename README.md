@@ -29,12 +29,12 @@
 ---
 
 ## 🥇 Sobre mí
-Soy **Antonio Vicente García Corrales**, estudiante de **Ingeniería de Sistemas (5to semestre)**. Me enfoco en **desarrollo web**, **bases de datos** y **automatización** con PowerShell. Me gusta crear proyectos reales con diseño llamativo y lógica sólida.
+Soy **Antonio Vicente García Corrales**, estudiante de **Ingeniería de Sistemas (6to semestre)**. Me enfoco en **desarrollo web**, **bases de datos** y **automatización** con PowerShell. Me gusta crear proyectos reales con diseño llamativo y lógica sólida.
 
 ## 🚀 Lo que hago
 - Desarrollo de **aplicaciones web** (UI moderna + lógica)
-- **Bases de datos**: MySQL y SQL Server
-- Automatización con **PowerShell**
+- **Bases de datos**: MySQL y SQL Server Nosql Mondo DB
+- Automatización con **PowerShell**,**Terminal**
 - Proyectos con estructura y enfoque a producto
 
 ## 📌 Proyectos Destacados
@@ -44,4 +44,4 @@ Soy **Antonio Vicente García Corrales**, estudiante de **Ingeniería de Sistema
 
 ## 📬 Contacto
 - **Email:** antoniovicentegarciacorrales2@gmail.com  
-- **Teléfono:** 76 97 44 99
+- **Teléfono:** 78 35 28 79
