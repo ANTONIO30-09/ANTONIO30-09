@@ -1,28 +1,27 @@
 #!/usr/bin/env python3
 """
-Efecto VISUAL.MAP (1-bit, Floyd-Steinberg serpentine) para el perfil de GitHub.
+Efecto VISUAL.MAP (1-bit, Floyd-Steinberg serpentine) con desvanecimiento por puntos.
 
 Uso, desde la carpeta del repo ANTONIO30-09:
     pip install pillow            # solo la primera vez
     python3 visual_map.py
 
-Fotos que usa (en este orden):
-    assets/foto.png
-    assets/visual-2.png, assets/visual-3.png, ...   (o .jpg / .jpeg)
-Cada foto aparece con un barrido, se desvanece y da paso a la siguiente.
-
-Crea assets/visual-map.svg y cambia la foto del README por ese SVG.
+Imágenes (en este orden):
+    assets/foto.png                      -> tu foto (recorte tipo retrato)
+    assets/visual-2.jpeg|png|jpg ...     -> logos/figuras (se ven completas)
+Cada imagen se disuelve punto por punto, se apaga y da paso a la siguiente.
 """
 import glob
 import os
 import re
 import sys
 
-from PIL import Image, ImageOps, ImageFilter
+from PIL import Image, ImageOps, ImageFilter, ImageStat
 
-W, H = 300, 340          # tamaño de la imagen en puntos
-TARGET_PTS = 18000       # puntos encendidos por foto
-SLOT = 7.0               # segundos que dura cada foto
+W, H = 300, 340
+TARGET_PTS = 18000
+SLOT = 7.0               # segundos por imagen
+LAYERS = 10              # capas de puntos que se encienden/apagan escalonadas
 OUT = "assets/visual-map.svg"
 
 BG = "#0D0D0D"
@@ -30,42 +29,63 @@ ROJO = "#8B0000"
 ACENTO = "#FFD700"
 PALETA = {"g": "#FFD700", "r": "#E63946", "w": "#FFFFFF"}
 
-# Geometría de la tarjeta
 CW, CH = 330, 436
-IX, IY = 15, 54          # esquina superior izquierda de la imagen
+IX, IY = 15, 54
 
 
 def find_sources():
     files = []
     if os.path.exists("assets/foto.png"):
-        files.append("assets/foto.png")
+        files.append(("assets/foto.png", "cover"))
     extra = []
     for ext in ("png", "jpg", "jpeg", "webp"):
         extra += glob.glob(f"assets/visual-*.{ext}")
-    files += sorted(extra)
+    files += [(f, "contain") for f in sorted(extra)]
     return files
 
 
-def prepare(path):
+def prepare(path, mode):
     img = Image.open(path)
-    img = ImageOps.exif_transpose(img).convert("L")
-    # recorte centrado (un poco hacia arriba para no perder la cara)
+    img = ImageOps.exif_transpose(img)
+    if img.mode in ("RGBA", "LA", "P"):
+        img = img.convert("RGBA")
+        fondo = Image.new("RGBA", img.size, (255, 255, 255, 255))
+        img = Image.alpha_composite(fondo, img)
+    img = img.convert("L")
     w, h = img.size
     ratio = W / H
-    if w / h > ratio:
-        cw, ch = int(h * ratio), h
-    else:
-        cw, ch = w, int(w / ratio)
-    left = (w - cw) // 2
-    top = int((h - ch) * 0.25)
-    img = img.crop((left, top, left + cw, top + ch)).resize((W, H), Image.LANCZOS)
+
+    # ¿fondo claro? -> se invierte para que el sujeto sea lo que se enciende
+    borde = [img.crop((0, 0, w, max(1, h // 20))), img.crop((0, h - max(1, h // 20), w, h)),
+             img.crop((0, 0, max(1, w // 20), h)), img.crop((w - max(1, w // 20), 0, w, h))]
+    media = sum(ImageStat.Stat(b).mean[0] for b in borde) / 4
+    invertir = media > 150
+
+    if mode == "cover":
+        if w / h > ratio:
+            cw, ch = int(h * ratio), h
+        else:
+            cw, ch = w, int(w / ratio)
+        left = (w - cw) // 2
+        top = int((h - ch) * 0.25)
+        img = img.crop((left, top, left + cw, top + ch)).resize((W, H), Image.LANCZOS)
+    else:  # contain: figura completa con margen
+        escala = min(W * 0.92 / w, H * 0.92 / h)
+        nw, nh = max(1, int(w * escala)), max(1, int(h * escala))
+        img = img.resize((nw, nh), Image.LANCZOS)
+        lienzo = Image.new("L", (W, H), 255 if invertir else 0)
+        lienzo.paste(img, ((W - nw) // 2, (H - nh) // 2))
+        img = lienzo
+
+    if invertir:
+        img = ImageOps.invert(img)
     img = ImageOps.autocontrast(img, cutoff=1)
     img = img.filter(ImageFilter.UnsharpMask(radius=1.2, percent=120, threshold=2))
-    return img
+    return img, invertir
 
 
 def dither(img, gamma):
-    """Floyd-Steinberg en recorrido serpentine. Devuelve lista de (x, y) encendidos."""
+    """Floyd-Steinberg serpentine. Devuelve los puntos encendidos."""
     px = img.load()
     rows = [[(px[x, y] / 255.0) ** gamma for x in range(W)] for y in range(H)]
     lit = []
@@ -95,7 +115,7 @@ def dither(img, gamma):
 
 
 def fit_points(img):
-    """Busca el gamma que deja ~TARGET_PTS puntos encendidos."""
+    """Gamma que deja ~TARGET_PTS puntos (si la imagen tiene menos, usa los que haya)."""
     lo, hi = 0.25, 5.0
     best = None
     for _ in range(9):
@@ -104,63 +124,28 @@ def fit_points(img):
         if best is None or abs(len(pts) - TARGET_PTS) < abs(len(best) - TARGET_PTS):
             best = pts
         if len(pts) > TARGET_PTS:
-            lo = mid      # demasiados -> oscurecer
+            lo = mid
         else:
             hi = mid
     return best
 
 
-def build_paths(points):
-    base = {"g": [], "r": [], "w": []}
-    tw = {0: [], 1: [], 2: []}
-    for x, y in points:
-        k = (x * 7 + y * 13) % 10
-        c = "g" if k < 6 else ("r" if k < 8 else "w")
-        seg = f"M{x + IX} {y + IY}h1v1h-1z"
-        base[c].append(seg)
-        h = (x * 31 + y * 17) % 40
-        if h < 3:
-            tw[h].append(seg)
-    return base, tw
-
-
-def keyframes(i, n):
-    s = i * 100.0 / n
-    a = s + 0.35 * 100.0 / n      # fin del barrido
-    f = s + 0.85 * 100.0 / n      # empieza el desvanecimiento
-    e = s + 100.0 / n
-    p = lambda v: f"{v:.3f}%"
-    eps = 0.01
-
-    # opacidad del grupo
-    op = []
-    if s > 0:
-        op += [f"0%{{opacity:0}}", f"{p(s - eps)}{{opacity:0}}"]
-    op += [f"{p(s)}{{opacity:1}}", f"{p(f)}{{opacity:1}}", f"{p(e)}{{opacity:0}}"]
-    if e < 100:
-        op += ["100%{opacity:0}"]
-
-    # cortina que descubre la imagen de arriba hacia abajo
-    cv = ["0%{transform:scaleY(1)}"]
-    if s > 0:
-        cv.append(f"{p(s)}{{transform:scaleY(1)}}")
-    cv += [f"{p(a)}{{transform:scaleY(0)}}", "100%{transform:scaleY(0)}"]
-
-    # línea de escaneo
-    sc = ["0%{opacity:0;transform:translateY(0)}"]
-    if s > 0:
-        sc.append(f"{p(s - eps)}{{opacity:0;transform:translateY(0)}}")
-    sc += [
-        f"{p(s)}{{opacity:1;transform:translateY(0)}}",
-        f"{p(a)}{{opacity:1;transform:translateY({H}px)}}",
-        f"{p(a + eps)}{{opacity:0;transform:translateY({H}px)}}",
-        "100%{opacity:0;transform:translateY(0)}",
-    ]
-    return (
-        f"@keyframes op{i}{{{''.join(op)}}}"
-        f"@keyframes cv{i}{{{''.join(cv)}}}"
-        f"@keyframes sc{i}{{{''.join(sc)}}}"
-    )
+def layer_keyframes(name, s, slot, l):
+    """Cada capa se enciende y se apaga en momentos distintos -> efecto de disolución."""
+    k = LAYERS - 1
+    in_s = s + slot * (0.30 * l / k)
+    in_e = in_s + slot * 0.12
+    out_s = s + slot * (0.70 + 0.18 * l / k)
+    out_e = out_s + slot * 0.12
+    puntos = [(0, 0), (in_s, 0), (in_e, 1), (out_s, 1), (out_e, 0), (100, 0)]
+    vistos, partes = set(), []
+    for p, o in puntos:
+        key = round(p, 3)
+        if key in vistos:
+            continue
+        vistos.add(key)
+        partes.append(f"{key}%{{opacity:{o}}}")
+    return f"@keyframes {name}{{{''.join(partes)}}}"
 
 
 def main():
@@ -169,48 +154,53 @@ def main():
         sys.exit("No encuentro assets/foto.png. Ejecuta el script dentro de ~/ANTONIO30-09")
     n = len(sources)
     total = SLOT * n
-    print(f"Fotos: {n} -> {sources}")
+    slot = 100.0 / n
+    print(f"Imágenes: {n}")
 
     css = [
         "text{font-family:'Fira Code','DejaVu Sans Mono',monospace}",
-        ".tw{animation:tw 2.4s ease-in-out infinite}",
-        "@keyframes tw{0%,100%{opacity:0}50%{opacity:1}}",
         ".hd{animation:hd 3s steps(1) infinite}",
         "@keyframes hd{50%{opacity:.35}}",
     ]
     frames = []
-    for i, src in enumerate(sources):
-        img = prepare(src)
+    for i, (src, mode) in enumerate(sources):
+        img, inv = prepare(src, mode)
         pts = fit_points(img)
-        base, tw = build_paths(pts)
-        print(f"  {src}: {len(pts)} puntos")
-        css.append(keyframes(i, n))
-        css.append(
-            f".o{i}{{animation:op{i} {total}s linear infinite}}"
-            f".c{i}{{transform-origin:{IX}px {IY + H}px;animation:cv{i} {total}s linear infinite}}"
-            f".s{i}{{animation:sc{i} {total}s linear infinite}}"
-        )
-        g = [f'<g class="o{i}" opacity="{1 if i == 0 else 0}">']
-        for c, segs in base.items():
-            if segs:
-                g.append(f'<path d="{"".join(segs)}" fill="{PALETA[c]}" fill-opacity="0.92"/>')
-        for k, segs in tw.items():
-            if segs:
-                g.append(
-                    f'<path class="tw" d="{"".join(segs)}" fill="#FFFFFF" opacity="0" '
-                    f'style="animation-delay:{k * 0.8:.1f}s"/>'
-                )
-        # cortina + línea de escaneo
-        g.append(f'<rect class="c{i}" x="{IX}" y="{IY}" width="{W}" height="{H}" fill="{BG}"/>')
-        g.append(f'<rect class="s{i}" x="{IX}" y="{IY}" width="{W}" height="2" fill="{ACENTO}"/>')
-        g.append(
-            f'<text x="{IX}" y="{CH - 14}" fill="#8A8A8A" font-size="10">'
-            f'PTS {len(pts)} · FS/SERPENTINE</text>'
-        )
-        g.append(
-            f'<text x="{CW - IX}" y="{CH - 14}" fill="#8A8A8A" font-size="10" text-anchor="end">'
-            f'FRAME {i + 1}/{n}</text>'
-        )
+        print(f"  {src} [{mode}{', invertida' if inv else ''}]: {len(pts)} puntos")
+        s = i * slot
+
+        capas = {l: {"g": [], "r": [], "w": []} for l in range(LAYERS)}
+        for x, y in pts:
+            c = (x * 7 + y * 13) % 10
+            c = "g" if c < 6 else ("r" if c < 8 else "w")
+            l = ((x * 73856093) ^ (y * 19349663)) % LAYERS
+            capas[l][c].append(f"M{x + IX} {y + IY}h1v1h-1z")
+
+        g = []
+        for l in range(LAYERS):
+            nombre = f"l{i}_{l}"
+            css.append(layer_keyframes(nombre, s, slot, l))
+            css.append(f".{nombre}{{opacity:0;animation:{nombre} {total}s linear infinite}}")
+            g.append(f'<g class="{nombre}">')
+            for c, segs in capas[l].items():
+                if segs:
+                    g.append(f'<path d="{"".join(segs)}" fill="{PALETA[c]}" fill-opacity="0.92"/>')
+            g.append("</g>")
+
+        # texto del pie: se desvanece con la imagen
+        tn = f"t{i}"
+        pts_t = [(0, 0), (s + slot * 0.10, 0), (s + slot * 0.30, 1), (s + slot * 0.75, 1), (s + slot * 0.95, 0), (100, 0)]
+        vistos, partes = set(), []
+        for p, o in pts_t:
+            key = round(p, 3)
+            if key in vistos:
+                continue
+            vistos.add(key)
+            partes.append(f"{key}%{{opacity:{o}}}")
+        css.append(f"@keyframes {tn}{{{''.join(partes)}}}.{tn}{{opacity:0;animation:{tn} {total}s linear infinite}}")
+        g.append(f'<g class="{tn}">')
+        g.append(f'<text x="{IX}" y="{CH - 14}" fill="#8A8A8A" font-size="10">PTS {len(pts)} · FS/SERPENTINE</text>')
+        g.append(f'<text x="{CW - IX}" y="{CH - 14}" fill="#8A8A8A" font-size="10" text-anchor="end">FRAME {i + 1}/{n}</text>')
         g.append("</g>")
         frames.append("\n".join(g))
 
@@ -232,18 +222,16 @@ def main():
         f.write(svg)
     print(f"Listo: {OUT} ({os.path.getsize(OUT) // 1024} KB)")
 
-    # Cambiar la foto del README por el SVG animado
     if os.path.exists("README.md"):
         md = open("README.md", encoding="utf-8").read()
-        new = md
         new = re.sub(r'<img src="assets/foto\.png"[^>]*/?>',
-                     f'<img src="assets/visual-map.svg" width="{CW}" alt="VISUAL.MAP" />', new)
+                     f'<img src="assets/visual-map.svg" width="{CW}" alt="VISUAL.MAP" />', md)
         new = re.sub(r'<td align="center" width="\d+">', '<td align="center" width="350">', new, count=1)
         if new != md:
             open("README.md", "w", encoding="utf-8").write(new)
             print("README.md actualizado")
         else:
-            print("README.md ya estaba actualizado (o no tiene la etiqueta de la foto)")
+            print("README.md ya estaba actualizado")
 
 
 if __name__ == "__main__":
