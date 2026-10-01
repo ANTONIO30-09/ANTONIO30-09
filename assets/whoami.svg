@@ -1,16 +1,23 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="620" height="270" viewBox="0 0 620 270">
-  <rect width="620" height="270" rx="14" fill="#0D0D0D" stroke="#8B0000" stroke-width="2"/>
-  <rect width="620" height="36" rx="14" fill="#1A0000"/>
+  <style>
+    text{font-family:'Fira Code','DejaVu Sans Mono',monospace;font-size:15px}
+    .l{opacity:0;animation:show .01s forwards}
+    .cur{fill:#FFD700;animation:blink 1s steps(1) infinite}
+    @keyframes show{to{opacity:1}}
+    @keyframes blink{50%{opacity:0}}
+  </style>
+  <rect x="1" y="1" width="618" height="268" rx="14" fill="#0D0D0D" stroke="#8B0000" stroke-width="2"/>
+  <path d="M1 15a14 14 0 0 1 14-14h590a14 14 0 0 1 14 14v21H1z" fill="#1A0000"/>
   <circle cx="24" cy="18" r="6" fill="#8B0000"/>
   <circle cx="46" cy="18" r="6" fill="#FFD700"/>
   <circle cx="68" cy="18" r="6" fill="#FFFFFF"/>
-  <g font-family="monospace" font-size="16">
-    <text x="26" y="78" fill="#FFD700">antonio@mint:~$ <tspan fill="#FFFFFF">whoami</tspan></text>
-    <text x="26" y="104" fill="#FFFFFF">Antonio Vicente García Corrales</text>
-    <text x="26" y="142" fill="#FFD700">antonio@mint:~$ <tspan fill="#FFFFFF">cat about.txt</tspan></text>
-    <text x="26" y="168" fill="#BBBBBB">🎓 Ingeniería de Sistemas, 6to semestre</text>
-    <text x="26" y="192" fill="#BBBBBB">🤖 Machine Learning · IA Generativa · Full Stack</text>
-    <text x="26" y="216" fill="#BBBBBB">📍 Bolivia</text>
-    <text x="26" y="240" fill="#BBBBBB">📸 instagram.com/ant_nin_o</text>
-  </g>
+  <text x="310" y="23" fill="#777777" text-anchor="middle" style="font-size:12px">antonio@mint: ~</text>
+
+  <text class="l" x="26" y="78"  fill="#FFD700" style="animation-delay:.4s">antonio@mint:~$ <tspan fill="#FFFFFF">whoami</tspan></text>
+  <text class="l" x="26" y="104" fill="#FFFFFF" style="animation-delay:1.1s">Antonio Vicente García Corrales</text>
+  <text class="l" x="26" y="142" fill="#FFD700" style="animation-delay:1.9s">antonio@mint:~$ <tspan fill="#FFFFFF">cat about.txt</tspan></text>
+  <text class="l" x="26" y="168" fill="#BBBBBB" style="animation-delay:2.6s">├─ carrera   : Ingeniería de Sistemas · 6to sem.</text>
+  <text class="l" x="26" y="192" fill="#BBBBBB" style="animation-delay:3.1s">├─ enfoque   : ML · IA Generativa · Full Stack</text>
+  <text class="l" x="26" y="216" fill="#BBBBBB" style="animation-delay:3.6s">├─ ubicación : Bolivia</text>
+  <text class="l" x="26" y="240" fill="#BBBBBB" style="animation-delay:4.1s">╰─ instagram : @ant_nin_o<tspan class="cur"> █</tspan></text>
 </svg>

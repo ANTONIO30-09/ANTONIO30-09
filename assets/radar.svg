@@ -1,5 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500">
-<rect width="500" height="500" rx="16" fill="#0D0D0D" stroke="#8B0000" stroke-width="2"/>
+<style>.poly{transform-origin:250px 250px;animation:grow 1.6s ease-out both}.pt{animation:pulse 2.4s ease-in-out infinite}@keyframes grow{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}@keyframes pulse{50%{opacity:.35}}</style>
+<rect x="1" y="1" width="498" height="498" rx="16" fill="#0D0D0D" stroke="#8B0000" stroke-width="2"/>
 <polygon points="250,212 282,231 282,269 250,288 218,269 218,231" fill="none" stroke="#3A1010"/>
 <polygon points="250,175 315,212 315,288 250,325 185,288 185,212" fill="none" stroke="#3A1010"/>
 <polygon points="250,138 347,194 347,306 250,362 153,306 153,194" fill="none" stroke="#3A1010"/>
@@ -15,12 +16,12 @@
 <line x1="250" y1="250" x2="120" y2="325" stroke="#3A1010"/>
 <text x="88" y="344" fill="#FFFFFF" font-family="monospace" font-size="14" text-anchor="middle" dominant-baseline="middle">Linux</text>
 <line x1="250" y1="250" x2="120" y2="175" stroke="#3A1010"/>
-<text x="88" y="156" fill="#FFFFFF" font-family="monospace" font-size="14" text-anchor="middle" dominant-baseline="middle">Automatizacion</text>
-<polygon points="250,130 347,194 341,302 250,362 159,303 166,201" fill="#FFD700" fill-opacity="0.3" stroke="#FFD700" stroke-width="2"/>
-<circle cx="250" cy="130" r="4" fill="#FFD700"/>
-<circle cx="347" cy="194" r="4" fill="#FFD700"/>
-<circle cx="341" cy="302" r="4" fill="#FFD700"/>
-<circle cx="250" cy="362" r="4" fill="#FFD700"/>
-<circle cx="159" cy="303" r="4" fill="#FFD700"/>
-<circle cx="166" cy="201" r="4" fill="#FFD700"/>
-</svg>
+<text x="88" y="156" fill="#FFFFFF" font-family="monospace" font-size="14" text-anchor="middle" dominant-baseline="middle">Automatización</text>
+<g class="poly"><polygon points="250,130 347,194 341,302 250,362 159,303 166,201" fill="#FFD700" fill-opacity="0.3" stroke="#FFD700" stroke-width="2"/>
+<circle class="pt" cx="250" cy="130" r="4" fill="#FFD700" style="animation-delay:0.0s"/>
+<circle class="pt" cx="347" cy="194" r="4" fill="#FFD700" style="animation-delay:0.3s"/>
+<circle class="pt" cx="341" cy="302" r="4" fill="#FFD700" style="animation-delay:0.6s"/>
+<circle class="pt" cx="250" cy="362" r="4" fill="#FFD700" style="animation-delay:0.9s"/>
+<circle class="pt" cx="159" cy="303" r="4" fill="#FFD700" style="animation-delay:1.2s"/>
+<circle class="pt" cx="166" cy="201" r="4" fill="#FFD700" style="animation-delay:1.5s"/>
+</g></svg>
