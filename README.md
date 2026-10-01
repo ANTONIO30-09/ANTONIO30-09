@@ -1,32 +1,48 @@
 <div align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=240&text=Antonio%20Vicente&fontAlign=50&fontAlignY=40&fontSize=72&color=0:000000,40:8B0000,75:FFD700,100:FFFFFF&fontColor=FFFFFF&animation=fadeIn&desc=Garc%C3%ADa%20Corrales&descAlign=50&descAlignY=72&descSize=30" />
+
+[![](https://capsule-render.vercel.app/api?type=waving&height=240&text=Antonio%20Vicente&fontAlign=50&fontAlignY=40&fontSize=72&color=0:000000,40:8B0000,75:FFD700,100:FFFFFF&fontColor=FFFFFF&animation=fadeIn&desc=Garc%C3%ADa%20Corrales&descAlign=50&descAlignY=72&descSize=30)](https://github.com/ANTONIO30-09)
+
+[![](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=2300&pause=450&center=true&vCenter=true&width=900&color=FFD700&lines=Ingenier%C3%ADa+de+Sistemas+(6to+semestre);Machine+Learning+%7C+IA+Generativa+%7C+Desarrollo+Full+Stack;Python+%7C+FastAPI+%7C+React+%7C+TypeScript+%7C+SQL;Remoto+%2F+H%C3%ADbrido+%7C+Pr%C3%A1cticas+%2F+Junior)](https://github.com/ANTONIO30-09)
+
+![profile views](https://komarev.com/ghpvc/?username=ANTONIO30-09&style=flat&color=FFD700&label=profile+views)
+
+[![Email](https://img.shields.io/badge/Email-antoniovicentegarciacorrales2%40gmail.com-000000?style=for-the-badge&logo=gmail&logoColor=white&labelColor=8B0000)](mailto:antoniovicentegarciacorrales2@gmail.com)
+![Ubicación](https://img.shields.io/badge/Ubicaci%C3%B3n-Bolivia-000000?style=for-the-badge&logo=google-maps&logoColor=white&labelColor=8B0000)
+![Teléfono](https://img.shields.io/badge/Tel%C3%A9fono-78%2035%2028%2079-000000?style=for-the-badge&logo=whatsapp&logoColor=white&labelColor=8B0000)
+
 </div>
 
-<div align="center">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=2300&pause=450&center=true&vCenter=true&width=900&color=FFD700&lines=Ingenier%C3%ADa+de+Sistemas+(6to+semestre);Machine+Learning+%7C+IA+Generativa+%7C+Desarrollo+Full+Stack;Python+%7C+FastAPI+%7C+React+%7C+TypeScript+%7C+SQL;Remoto+%2F+H%C3%ADbrido+%7C+Pr%C3%A1cticas+%2F+Junior" />
-</div>
+---
 
-<div align="center">
-  <a href="mailto:antoniovicentegarciacorrales2@gmail.com">
-    <img src="https://img.shields.io/badge/Email-antoniovicentegarciacorrales2%40gmail.com-000000?style=for-the-badge&logo=gmail&logoColor=white&labelColor=8B0000" />
-  </a>
-  <img src="https://img.shields.io/badge/Ubicaci%C3%B3n-Bolivia-000000?style=for-the-badge&logo=google-maps&logoColor=white&labelColor=8B0000" />
-  <img src="https://img.shields.io/badge/Tel%C3%A9fono-78%2035%2028%2079-000000?style=for-the-badge&logo=whatsapp&logoColor=white&labelColor=8B0000" />
-</div>
-<br/>
+## `$ whoami`
 
-<div align="center">
-  <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=py,html,css,js,ts,react,fastapi,cs,cpp,c,mysql,git,github,vscode,linux,docker&perline=8&theme=dark" />
-  </a>
-</div>
+<table>
+  <tr>
+    <td align="center" width="240">
+      <img src="assets/foto.png" width="220" alt="Antonio" />
+    </td>
+    <td>
+      <img src="assets/whoami.svg" width="620" alt="whoami" />
+    </td>
+  </tr>
+</table>
 
-<div align="center">
-  <img src="https://img.shields.io/badge/SQL%20Server-000000?style=for-the-badge&logo=microsoftsqlserver&logoColor=white&labelColor=8B0000" />
-  <img src="https://img.shields.io/badge/MongoDB-000000?style=for-the-badge&logo=mongodb&logoColor=white&labelColor=8B0000" />
-  <img src="https://img.shields.io/badge/Gemini%20API-000000?style=for-the-badge&logo=googlegemini&logoColor=white&labelColor=8B0000" />
-  <img src="https://img.shields.io/badge/Ollama-000000?style=for-the-badge&logo=ollama&logoColor=white&labelColor=8B0000" />
-</div>
+## `$ cat tech-stack.yaml`
+
+| `antonio@mint:~$ cat tech-stack.yaml` | |
+|---|---|
+| `├─ ✦ languages:` <br> ![Python](https://cdn.simpleicons.org/python/FFD700) ![TypeScript](https://cdn.simpleicons.org/typescript/FFD700) ![JavaScript](https://cdn.simpleicons.org/javascript/FFD700) ![C#](https://cdn.simpleicons.org/csharp/FFD700) ![C++](https://cdn.simpleicons.org/cplusplus/FFD700) | `├─ ▣ databases:` <br> ![MySQL](https://cdn.simpleicons.org/mysql/FFD700) ![SQL Server](https://cdn.simpleicons.org/microsoftsqlserver/FFD700) ![MongoDB](https://cdn.simpleicons.org/mongodb/FFD700) |
+| `├─ ⚙ frameworks:` <br> ![React](https://cdn.simpleicons.org/react/FFD700) ![FastAPI](https://cdn.simpleicons.org/fastapi/FFD700) | `├─ 🤖 ai:` <br> ![Gemini](https://cdn.simpleicons.org/googlegemini/FFD700) ![Ollama](https://cdn.simpleicons.org/ollama/FFD700) |
+| `╰─ ⌁ tools:` <br> ![Git](https://cdn.simpleicons.org/git/FFD700) ![GitHub](https://cdn.simpleicons.org/github/FFD700) ![Linux](https://cdn.simpleicons.org/linux/FFD700) ![Docker](https://cdn.simpleicons.org/docker/FFD700) | `status: ready · environment: production` |
+
+---
+
+## `$ kubectl get signals --all-namespaces`
+
+<p align="center">
+  <img src="assets/radar.svg" width="380" alt="Radar de habilidades" />
+  <img src="assets/radar-langs.svg" width="380" alt="Radar de lenguajes" />
+</p>
 
 ---
 
@@ -48,7 +64,13 @@ Soy **Antonio Vicente García Corrales**, estudiante de **Ingeniería de Sistema
 - 🚌 Sistema de gestión (rutas / administración / datos)
 - 📦 Gestión de pedidos/entregas (CRUD + BD)
 
-## 📬 Contacto
+## `$ connect --socials`
 
-- **Email:** antoniovicentegarciacorrales2@gmail.com
-- **Teléfono:** 78 35 28 79
+[![Instagram](https://img.shields.io/badge/Instagram-000000?style=for-the-badge&logo=instagram&logoColor=white&labelColor=8B0000)](https://www.instagram.com/ant_nin_o)
+[![GitHub](https://img.shields.io/badge/GitHub-000000?style=for-the-badge&logo=github&logoColor=white&labelColor=8B0000)](https://github.com/ANTONIO30-09)
+
+<div align="center">
+
+Hecho con 💛 y mucho café desde Bolivia · @ANTONIO30-09
+
+</div>

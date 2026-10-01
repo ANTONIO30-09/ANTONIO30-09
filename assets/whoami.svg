@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="270" viewBox="0 0 620 270">
+  <rect width="620" height="270" rx="14" fill="#0D0D0D" stroke="#8B0000" stroke-width="2"/>
+  <rect width="620" height="36" rx="14" fill="#1A0000"/>
+  <circle cx="24" cy="18" r="6" fill="#8B0000"/>
+  <circle cx="46" cy="18" r="6" fill="#FFD700"/>
+  <circle cx="68" cy="18" r="6" fill="#FFFFFF"/>
+  <g font-family="monospace" font-size="16">
+    <text x="26" y="78" fill="#FFD700">antonio@mint:~$ <tspan fill="#FFFFFF">whoami</tspan></text>
+    <text x="26" y="104" fill="#FFFFFF">Antonio Vicente García Corrales</text>
+    <text x="26" y="142" fill="#FFD700">antonio@mint:~$ <tspan fill="#FFFFFF">cat about.txt</tspan></text>
+    <text x="26" y="168" fill="#BBBBBB">🎓 Ingeniería de Sistemas, 6to semestre</text>
+    <text x="26" y="192" fill="#BBBBBB">🤖 Machine Learning · IA Generativa · Full Stack</text>
+    <text x="26" y="216" fill="#BBBBBB">📍 Bolivia</text>
+    <text x="26" y="240" fill="#BBBBBB">📸 instagram.com/ant_nin_o</text>
+  </g>
+</svg>

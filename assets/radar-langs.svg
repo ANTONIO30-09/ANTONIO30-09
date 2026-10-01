@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="500" viewBox="0 0 500 500">
+<rect width="500" height="500" rx="16" fill="#0D0D0D" stroke="#8B0000" stroke-width="2"/>
+<polygon points="250,212 282,231 282,269 250,288 218,269 218,231" fill="none" stroke="#3A1010"/>
+<polygon points="250,175 315,212 315,288 250,325 185,288 185,212" fill="none" stroke="#3A1010"/>
+<polygon points="250,138 347,194 347,306 250,362 153,306 153,194" fill="none" stroke="#3A1010"/>
+<polygon points="250,100 380,175 380,325 250,400 120,325 120,175" fill="none" stroke="#3A1010"/>
+<line x1="250" y1="250" x2="250" y2="100" stroke="#3A1010"/>
+<text x="250" y="62" fill="#FFFFFF" font-family="monospace" font-size="14" text-anchor="middle" dominant-baseline="middle">Python</text>
+<line x1="250" y1="250" x2="380" y2="175" stroke="#3A1010"/>
+<text x="412" y="156" fill="#FFFFFF" font-family="monospace" font-size="14" text-anchor="middle" dominant-baseline="middle">TypeScript</text>
+<line x1="250" y1="250" x2="380" y2="325" stroke="#3A1010"/>
+<text x="412" y="344" fill="#FFFFFF" font-family="monospace" font-size="14" text-anchor="middle" dominant-baseline="middle">JavaScript</text>
+<line x1="250" y1="250" x2="250" y2="400" stroke="#3A1010"/>
+<text x="250" y="438" fill="#FFFFFF" font-family="monospace" font-size="14" text-anchor="middle" dominant-baseline="middle">SQL</text>
+<line x1="250" y1="250" x2="120" y2="325" stroke="#3A1010"/>
+<text x="88" y="344" fill="#FFFFFF" font-family="monospace" font-size="14" text-anchor="middle" dominant-baseline="middle">C#</text>
+<line x1="250" y1="250" x2="120" y2="175" stroke="#3A1010"/>
+<text x="88" y="156" fill="#FFFFFF" font-family="monospace" font-size="14" text-anchor="middle" dominant-baseline="middle">C++</text>
+<polygon points="250,122 341,198 341,302 250,355 179,291 185,212" fill="#FFD700" fill-opacity="0.3" stroke="#FFD700" stroke-width="2"/>
+<circle cx="250" cy="122" r="4" fill="#FFD700"/>
+<circle cx="341" cy="198" r="4" fill="#FFD700"/>
+<circle cx="341" cy="302" r="4" fill="#FFD700"/>
+<circle cx="250" cy="355" r="4" fill="#FFD700"/>
+<circle cx="179" cy="291" r="4" fill="#FFD700"/>
+<circle cx="185" cy="212" r="4" fill="#FFD700"/>
+</svg>
