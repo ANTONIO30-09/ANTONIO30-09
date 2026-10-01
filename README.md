@@ -16,16 +16,9 @@
 
 ## `$ whoami`
 
-<table>
-  <tr>
-    <td align="center" width="350">
-      <img src="assets/visual-map.svg" width="330" alt="VISUAL.MAP" />
-    </td>
-    <td>
-      <img src="assets/whoami.svg" width="620" alt="Terminal whoami de Antonio" />
-    </td>
-  </tr>
-</table>
+<div align="center">
+  <img src="assets/profile-window.svg" width="900" alt="vim profile.yml" />
+</div>
 
 ---
 
