@@ -18,8 +18,8 @@
 
 <table>
   <tr>
-    <td align="center" width="240">
-      <img src="assets/foto.png" width="220" alt="Antonio" />
+    <td align="center" width="350">
+      <img src="assets/visual-map.svg" width="330" alt="VISUAL.MAP" />
     </td>
     <td>
       <img src="assets/whoami.svg" width="620" alt="Terminal whoami de Antonio" />
